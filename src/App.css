@@ -1,0 +1,333 @@
+App {
+  font-family: "Karla", sans-serif;
+}
+
+.header {
+  background: rgb(95,39,124);
+  background: linear-gradient(90deg, rgba(95,39,124,1) 0%, rgba(153,50,203,1) 100%);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.header-img {
+  height: 40px;
+  padding-left: 25px;
+}
+
+.header-title {
+  font-size: 2rem;
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  padding: 4vh;
+}
+
+.form {
+  display: grid;
+  grid-template: 40px 40px / 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  font-family: "Karla", sans-serif;
+  border-radius: 5px;
+  border: 1px solid #D5D4D8;
+  text-indent: 10px;
+  font-size: 18px;
+}
+
+.form-button {
+  grid-column: 1 / -1;
+  font-family: "Karla", sans-serif;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  background: rgb(95,39,124);
+  background: linear-gradient(90deg, rgba(95,39,124,1) 0%, rgba(153,50,203,1) 100%);
+}
+
+.meme {
+    position: relative;
+    text-align: center;
+}
+
+.meme-image {
+    max-width: 100%;
+    border-radius: 3px;
+}
+
+.meme-text {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact, sans-serif;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 2px 0 #000,
+        2px 0 0 #000,
+        0 -2px 0 #000,
+        -2px 0 0 #000,
+        2px 2px 5px #000;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.top {
+    top: 0;
+}
+
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+/* .card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+} */
+/* .card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+} */
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.author {
+  font-size: 12px;
+}
+
+.trash-bin-container {
+  display: flex;
+}
+
+.trash-bin {
+  margin-left: 20px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.comment-container {
+  display: inline;
+}
+
+.comment {
+  padding: 20px 10px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.comment-counter {
+  display: inline;
+  width: 80%;
+}
+.speech-box {
+  margin-top: 4px;
+  margin-right: 5px;
+  height: 18px;
+  width: 18px;
+}
+
+.close-icon {
+  right: 0;
+  position: absolute;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.admin-form-users {
+  margin-left: 10px;
+}
+
+.select-box {
+  right: 0;
+  position: absolute;
+  margin-right: 20px;
+}
+
+.select {
+  right: 0;
+}
+
+.toggle-switch {
+  right: 0;
+  position: absolute;
+  margin-right: 20px;
+}
+
+.new-post {
+  cursor: pointer;
+}
+
+.group-link {
+  text-decoration: none;
+  color: black;
+}
+
+.plus-icon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.left-arrow {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.username {
+  margin-left: 10px;
+}
+
+.group-title {
+  float: left;
+  margin-bottom: 20px;
+}
+
+.card {
+  width: 95%;
+}
+
+
+/*AUTOSUGGEST*/
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+
+
+
+
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
