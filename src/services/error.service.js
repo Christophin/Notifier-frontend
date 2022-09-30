@@ -10,7 +10,11 @@ const handleError = (err) => {
       :
       err.message
       ? err.message : err.toString();
-    return resMessage
+
+    return {
+      message: resMessage
+    }
+
 }
 
 const ErrorService = {

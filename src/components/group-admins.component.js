@@ -45,10 +45,10 @@ export default function GroupAdmins(props) {
     try {
       const res = await GroupService.removeAdmin(props.group.id, userId)
       if(!res) throw Error("something's gone wrong with removing the admin")
-      if( res.response && res.response.status != 200) {
-        setMessage(ErrorService.handleError(res))
+      if( res.message) {
+        setMessage(res.message)
       }
-      props.getGroup()
+      props.group.getGroup()
     } catch(err) {
       console.log("err in remove admin", err);
       setMessage(ErrorService.handleError(err))
@@ -84,6 +84,13 @@ export default function GroupAdmins(props) {
         <h5 className="group-title">Admins:</h5>
       </div>
       {adminElements}
+      { message && (
+        <div className="form-group">
+          <div className="alert alert-danger" role="alert">
+            { message }
+          </div>
+        </div>
+      )}
     </div>
   )
 }

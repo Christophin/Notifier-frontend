@@ -1,17 +1,15 @@
 import React from "react";
 import Card from 'react-bootstrap/Card'
-import { Routes, Route, Link } from "react-router-dom";
-import GroupService from '../services/group.service';
+import { Link } from "react-router-dom";
 import NewGroup from './new-group.component';
 
 
 export default function Groups(props) {
   const [groups, setGroups] = React.useState([])
-  console.log(props.user)
   React.useEffect(() => {
     setGroups(props.user.groups)
 
-  }, [groups])
+  }, [props.user.groups])
 
   const groupElements = groups.map(group => {
     return (

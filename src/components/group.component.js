@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,17 +8,22 @@ import GroupService from '../services/group.service';
 import GroupAdmins from './group-admins.component';
 import GroupMembers from './group-members.component';
 import GroupLeads from './group-leads.component';
-import plusIcon from '../images/plus-icon.png';
+import GroupEvents from './group-events.component';
 
 export default function Group(props) {
   const { id } = useParams()
   const [loading, setLoading] = React.useState(true)
   const [group, setGroup] = React.useState({})
   const [user, setUser] = React.useState(AuthService.getCurrentUser())
-  async function getGroup() {
+  const [message, setMessage] = React.useState("")
+
+  const getGroup = React.useCallback(async() => {
     try {
       const groupById = await GroupService.groupById(id)
       if(!groupById) throw Error("Group not found")
+      if(groupById.message) {
+        setMessage(groupById.message)
+      }
       setUser(AuthService.getCurrentUser())
       let isGroupAdmin = false
       groupById.admins.forEach(admin => {
@@ -36,17 +40,18 @@ export default function Group(props) {
       setGroup({
         ...groupById,
         isAdmin: isGroupAdmin,
-        isLead: isGroupLead
+        isLead: isGroupLead,
+        getGroup: () => getGroup()
       })
       setLoading(false)
     } catch(err) {
       console.log("err", err)
     }
-  }
+  }, [user.id])
 
   React.useEffect(() => {
     getGroup()
-  }, [])
+  }, [getGroup])
 
   if(loading) {
     return (
@@ -54,44 +59,35 @@ export default function Group(props) {
     )
   }
 
-  const eventElements = group.events.map(event => {
-    return (
-      <Card key={event.id}>
-        <Card.Body>{event.name}</Card.Body>
-      </Card>
-    )
-  })
-
   return (
     <div>
-      <h3>{group.name}</h3>
-      <p>{group.description}</p>
+      <h3>{ group.name }</h3>
+      <p>{ group.description }</p>
       <Container fluid>
         <Row>
           <Col>
-            <GroupAdmins
-              group={group}
-              getGroup={() => getGroup()} />
+            <GroupAdmins group={ group } />
           </Col>
           <Col>
-            <GroupLeads
-              group={group}
-              getGroup={() => getGroup()} />
+            <GroupLeads group={ group } />
           </Col>
           <Col>
-            <GroupMembers
-              group={group}
-              getGroup={() => getGroup()} />
+            <GroupMembers group={group} />
           </Col>
         </Row>
         <Row>
         <div>
-          <h5 className="group-title">Events:</h5>
-          <img className="plus-icon" src={plusIcon} alt="add member" />
+          <GroupEvents group={ group } />
         </div>
-          {eventElements}
         </Row>
       </Container>
+      { message && (
+        <div className="form-group">
+          <div className="alert alert-danger" role="alert">
+            { message }
+          </div>
+        </div>
+      )}
     </div>
 
   )

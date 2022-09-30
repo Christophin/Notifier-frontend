@@ -1,4 +1,4 @@
-App {
+ App {
   font-family: "Karla", sans-serif;
 }
 
@@ -24,6 +24,10 @@ App {
 
 main {
   padding: 4vh;
+}
+
+.post {
+  margin-bottom: 10px;
 }
 
 .form {
@@ -97,10 +101,8 @@ main {
 }
 
 
-label {
-  display: block;
-  margin-top: 10px;
-}
+
+
 /* .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
@@ -117,6 +119,8 @@ label {
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 } */
+
+
 .profile-img-card {
   width: 96px;
   height: 96px;
@@ -190,7 +194,7 @@ label {
   right: 0;
 }
 
-.toggle-switch {
+.mod-toggle-switch {
   right: 0;
   position: absolute;
   margin-right: 20px;
@@ -231,8 +235,36 @@ label {
   width: 95%;
 }
 
+.private-label {
+  display: inline;
+  margin-left: 10px;
+}
+
+.private-input {
+  margin-top: 20px;
+}
+
+.question-mark {
+  height: 14px;
+  width: 14px;
+}
+
+.event-container {
+  margin-top: 40px;
+}
+
+.date-time-container {
+  margin-top: 20px;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+
 
 /*AUTOSUGGEST*/
+
 .react-autosuggest__container {
   position: relative;
 }
@@ -288,7 +320,6 @@ label {
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
-
 
 
 

@@ -12,6 +12,7 @@ import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import Groups from "./components/groups.component";
 import Group from './components/group.component'
+import SingleEvent from './components/event.component'
 import BoardAdmin from "./components/board-admin.component";
 import Meme from './components/meme.component';
 import NewPost from './components/new-post.component';
@@ -23,7 +24,6 @@ export default function App() {
   const [user, setUser] = React.useState({})
 
   function getUser() {
-    console.log("Inside get user!!");
     const user = AuthService.getCurrentUser()
     if(user) {
       setUser({
@@ -110,7 +110,7 @@ export default function App() {
               <NewPost user={user} />
             </li>
             {user.isMod && <li>
-              <div className="toggle-switch">
+              <div className="mod-toggle-switch">
                 <label>
                   <Switch onChange={toggle} checked={user.modPowers} />
                 </label>
@@ -141,7 +141,10 @@ export default function App() {
           {user.id && <Route path="/profile" element={<Profile user={user} />} />}
           <Route path="/user/:id" element={<BoardUser />} />
           {user.id && <Route path="/groups" element={<Groups user={user} />} />}
-          {user.id && <Route path="/group/:id" element={<Group user={user} />} />}
+          {user.id && <Route path="/group/:id/" element={<Group user={user} />} >
+              <Route path="/group/:id/event/:eventId" element={<SingleEvent user={user} />} />
+            </Route>
+          }
           {user.id && <Route path="/admin" element={<BoardAdmin user={user} />} />}
           <Route path="/meme" element={<Meme />} />
         </Routes>

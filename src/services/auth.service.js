@@ -21,6 +21,8 @@ import axios from "axios";
       return resp.data
     } catch(err) {
       console.log("err", err)
+      localStorage.removeItem("user")
+      window.location.reload()
     }
   }
   const register = (username, email, password) => {

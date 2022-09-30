@@ -2,15 +2,11 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Input from "react-validation/build/input";
-import Form from "react-validation/build/form";
-import CheckButton from "react-validation/build/button";
 import plusIcon from '../images/plus-icon.png'
 import leftArrow from '../images/left-arrow.png'
 import Autosuggest from 'react-autosuggest';
 import UserService from '../services/user.service'
 import GroupService from '../services/group.service'
-import AuthService from '../services/auth.service'
 import ErrorService from '../services/error.service'
 import CloseIcon from '@rsuite/icons/Close';
 
@@ -42,11 +38,11 @@ export default function GroupMembers(props) {
     setMessage("")
     try {
       const res = await GroupService.addUserToGroup(props.group.id, newMember)
-      if(res && res.status != 200) {
-        setMessage(ErrorService.handleError(res))
+      if(res.message) {
+        setMessage(res.message)
       }
       handleClose()
-      props.getGroup()
+      props.group.getGroup()
     } catch(err) {
       console.log("error", err);
       setMessage(ErrorService.handleError(err))
@@ -58,10 +54,10 @@ export default function GroupMembers(props) {
     try {
       const res = await GroupService.removeMember(props.group.id, userId)
       if(!res) throw Error("Something went wrong removing the member from the group")
-      if(res && res.status != 200) {
-        setMessage(ErrorService.handleError(res))
+      if( res.message) {
+        setMessage(res.message)
       }
-      props.getGroup()
+      props.group.getGroup()
     } catch(err) {
       console.log("err", err);
       setMessage(ErrorService.handleError(err))
@@ -73,10 +69,10 @@ export default function GroupMembers(props) {
     try{
       const res = await GroupService.addLead(props.group.id, userId)
       if(!res) throw Error("Something went wrong with adding the lead")
-      if( res.response && res.response.status != 200) {
-        setMessage(ErrorService.handleError(res))
+      if( res.message) {
+        setMessage(res.message)
       }
-      props.getGroup()
+      props.group.getGroup()
     } catch(err) {
       console.log("err in add lead", err)
       setMessage(ErrorService.handleError(err))
@@ -84,12 +80,12 @@ export default function GroupMembers(props) {
   }
 
   async function onSuggestionsFetchRequested({ value, reason }) {
-    if(reason != 'input-focused') {
+    if(reason !== 'input-focused') {
       try {
         const res = await UserService.autoSuggest(newMember)
         if(!res) throw Error("something went wrong getting autosuggestions")
-        if(res && res.status != 200) {
-          setMessage(ErrorService.handleError(res))
+        if( res.message) {
+          setMessage(res.message)
         } else {
           setSuggestions(res.data)
         }
@@ -160,16 +156,6 @@ export default function GroupMembers(props) {
       </Card>
     )
   })
-
-  const required = value => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
 
   return (
     <div>
